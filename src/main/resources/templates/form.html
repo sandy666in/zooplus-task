@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Cryptocurrency Price</title>
+</head>
+<body>
+<form th:action="@{~/form}" method="post">
+    <div class="center">
+        <div>
+            <select  class="form-control" id="currency" name="currency"  onchange="this.form.submit()">
+                <option value="">Select Cryptocurrency</option>
+                <option th:each="currency : ${currencies}" th:value="${currency.code}" th:text="${currency.name}"
+                        th:selected="${currency.isSelected(lastSelected)}"  >
+                </option>
+            </select>
+        </div>
+        </br>
+        <div>
+            <input type="text" placeholder="IP Address" id="ipAddress" name="ipAddress" th:value="${ipAddress}" >
+        </div>
+        </br>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+        </br>
+        <div>
+            <p th:text="${symbolCourse}" ></p>
+        </div>
+    </div>
+</form>
+</body>
+</html>
