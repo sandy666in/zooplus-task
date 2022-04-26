@@ -36,12 +36,28 @@ public class CryptoController {
 
     private static final String EURO_SYMBOL = "\u20ac";
 
+    /**
+     * Gets fired on UI load, Sets defaults.
+     *
+     * @param model - The UI model
+     * @return
+     */
     @GetMapping("/form")
     public String getForm(Model model) {
 
         setModelAttributes(model, "Select Cryptocurrency", "", "");
         return "form";
     }
+
+    /**
+     * Get the current market price of the selected cryptocurrency and loads it to the UI.
+     * Gets fired on post from the UI.
+     *
+     * @param currency - The selected cryptocurrency
+     * @param ipAddress - IP address to get the locale
+     * @param model - The UI model
+     *
+     */
 
     @PostMapping("/form")
     public String getForm(@Valid String currency, @Valid String ipAddress, Model model) {
@@ -59,6 +75,7 @@ public class CryptoController {
             location = locationService.getLocation(ipAddress).block();
         } catch (Exception ex) {
             log.error("Exception while fetching location API", ex);
+            // Default to Euro location.
             location = new Location(ipAddress, new Currency("EUR", "Euro", EURO_SYMBOL));
         }
 
@@ -76,12 +93,14 @@ public class CryptoController {
     }
 
     private String getFormattedPrice(String symbol, Double price) {
+
         DecimalFormat df = new DecimalFormat("0.00");
         df.setRoundingMode(RoundingMode.UP);
         return "Current unit price: " + symbol + " " + df.format(price);
     }
 
     private void setModelAttributes(Model model, String lastSelected, String priceDetails, String ipAddress) {
+
         model.addAttribute("lastSelected", lastSelected);
         model.addAttribute("priceDetails", priceDetails);
         model.addAttribute("ipAddress", ipAddress);
