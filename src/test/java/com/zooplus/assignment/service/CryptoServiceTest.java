@@ -23,6 +23,7 @@ public class CryptoServiceTest extends BaseTest {
     @Test
     public void getPriceForCurrency() {
 
+        //Case to check the currency rate in local/locale currency.
         Price mockPrice = new Price("","BTC","USD","3200");
 
         when(responseMock.bodyToMono(Price.class)).thenReturn(Mono.just(mockPrice));

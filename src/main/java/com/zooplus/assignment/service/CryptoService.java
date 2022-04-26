@@ -27,6 +27,13 @@ public class CryptoService {
         this.webClient = WebClient.create(BASE_URL);
     }
 
+    /**
+     * Returns the price detail of the base cryptocurrency from Coin API.
+     *
+     * @param base - Base cryptocurrency code.
+     * @param currency - - Location bases currency code.
+     * @return - price details for the associated cryptocurrency.
+     */
     public Mono<Price> getPrice(String base, String currency) {
 
         return webClient.get()
@@ -38,6 +45,10 @@ public class CryptoService {
                 .bodyToMono(Price.class);
     }
 
+    /**
+     * Returns list of  cryptocurrencies.
+     * @return List of cryptocurrency
+     */
     public List<Currency> getCurrencies() {
 
         List<Currency> currencies = new ArrayList<>();

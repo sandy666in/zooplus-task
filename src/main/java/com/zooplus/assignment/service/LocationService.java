@@ -25,6 +25,12 @@ public class LocationService {
         this.webClient = WebClient.create(BASE_URL);;
     }
 
+    /**
+     * Returns the location detail of the ip address, details fetched from Ip geolocation.
+     *
+     * @param ipAddress - ip address.
+     * @return - location details for the associated ip.
+     */
     public Mono<Location> getLocation(String ipAddress) {
 
         return webClient.get()
