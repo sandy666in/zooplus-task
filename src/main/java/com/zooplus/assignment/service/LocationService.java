@@ -14,8 +14,8 @@ import javax.xml.rpc.ServiceException;
 public class LocationService {
 
     private WebClient webClient;
-    private final static String BASE_URL = "https://api.ipgeolocation.io/";
-    public final static String PATH_PARAM  = "/ipgeo?apiKey=2d0ccf4e1f844155852b2ab3041ab40c&fields=currency&ip=";
+    private final static String BASE_URL = "https://api.ipgeolocation.io/ipgeo";
+    public final static String API_KEY  = "?apiKey=2d0ccf4e1f844155852b2ab3041ab40c&fields=currency&ip=";
 
     public LocationService(WebClient webClient) {
         this.webClient = webClient;
@@ -37,6 +37,6 @@ public class LocationService {
     }
 
     private String getUri(String ipAddress) {
-        return PATH_PARAM + ipAddress;
+        return API_KEY + ipAddress;
     }
 }

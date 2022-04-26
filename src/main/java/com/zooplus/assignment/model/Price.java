@@ -7,7 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 public class Price {
 
+    private String time;
     private String base;
-    private String currency;
-    private String amount;
+    private String quote;
+    private String rate;
+
 }
