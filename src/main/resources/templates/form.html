@@ -2,15 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" >
     <meta charset="UTF-8">
     <title>Cryptocurrency Price</title>
 </head>
+<style>
+.center {
+  margin: auto;
+  width: 40%;
+  border: 3px solid #73AD21;
+  padding: 35px;
+  text-align: center;
+  font-family: calibre;
+}
+</style>
 <body>
-<form th:action="@{~/form}" method="post">
+<form  th:action="@{~/form}" method="post" name="form" >
     <div class="center">
         <div>
-            <select  class="form-control" id="currency" name="currency"  onchange="this.form.submit()">
+            <select style="width:220px;"  class="form-control" id="currency" name="currency"  onchange="this.form.submit()">
                 <option value="">Select Cryptocurrency</option>
                 <option th:each="currency : ${currencies}" th:value="${currency.code}" th:text="${currency.name}"
                         th:selected="${currency.isSelected(lastSelected)}"  >
@@ -19,7 +29,8 @@
         </div>
         </br>
         <div>
-            <input type="text" placeholder="IP Address" id="ipAddress" name="ipAddress" th:value="${ipAddress}" >
+            <input style="width:210px;" type="text" placeholder="IP Address" id="ipAddress" name="ipAddress"
+                   th:value="${ipAddress}" pattern="^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$"  >
         </div>
         </br>
         <div>
@@ -27,7 +38,7 @@
         </div>
         </br>
         <div>
-            <p th:text="${symbolCourse}" ></p>
+            <p th:text="${priceDetails}" ></p>
         </div>
     </div>
 </form>
