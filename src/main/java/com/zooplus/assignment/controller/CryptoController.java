@@ -78,7 +78,7 @@ public class CryptoController {
     private String getFormattedPrice(String symbol, Double price) {
         DecimalFormat df = new DecimalFormat("0.00");
         df.setRoundingMode(RoundingMode.UP);
-        return symbol + " " + df.format(price);
+        return "Current unit price: " + symbol + " " + df.format(price);
     }
 
     private void setModelAttributes(Model model, String lastSelected, String priceDetails, String ipAddress) {
